@@ -11,7 +11,7 @@
 - ​💪​ Single-file executable - no installation required
 - 🎈 Independent of FFmpeg, Python, PyTorch, and ONNX
 - 🎨​ Support multiple formats (e.g. mp4, mp3, wav)
-- 🎤 Offer multiple built-in base speakers: en-au, en-br, en-default, en-india, en-newest, en-us, es, fr, jp, kr, zh
+- 👄 Offer multiple built-in base speakers: en-au, en-br, en-default, en-india, en-newest, en-us, es, fr, jp, kr, zh
 - 💻​ Support CPU & GPU
 
 ## 🚀 Quick-Start
@@ -99,6 +99,16 @@ cargo build --release
 - candle-nn = { git = "https://github.com/jingangdidi/candle", package = "candle-nn", branch = "main" }
 + candle-nn = { git = "https://github.com/jingangdidi/candle", package = "candle-nn", branch = "main", features = ["cuda"] }
 ```
+
+## ⚡️ Performance
+CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090
+| CPU/GPU | thread | elapsed time |
+| ------- | ------ | ------------ |
+| CPU     | 4      | 89.91s       |
+| CPU     | 10     | 63.86s       |
+| CPU     | 20     | 49.31s       |
+| GPU     |        | 1.14s        |
+
 
 ## 🚥 Arguments
 ```
