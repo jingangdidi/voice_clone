@@ -11,7 +11,7 @@
 - ​💪​ Single-file executable - no installation required
 - 🎈 Independent of FFmpeg, Python, PyTorch, and ONNX
 - 🎨​ Support multiple formats (e.g. mp4, mp3, wav)
-- 🎤 Offer multiple built-in base speakers
+- 🎤 Offer multiple built-in base speakers: en-au, en-br, en-default, en-india, en-newest, en-us, es, fr, jp, kr, zh
 - 💻​ Support CPU & GPU
 
 ## 🚀 Quick-Start
@@ -20,7 +20,7 @@
 some dir
 ├─ voice_clone    # single executable file
 └─ checkpoints_v2 # OpenVoice model
-     └─ converter
+     └─ converter # use -m specify this dir, default: ./checkpoints_v2/converter
           ├─ config.json
           └─ checkpoint.pth
 ```
@@ -28,7 +28,11 @@ some dir
 
 [latest release](https://github.com/jingangdidi/voice_clone/releases)
 
-**2. convert some voice to your voice**
+**2. download OpenVoice modle**
+
+[checkpoints_v2](https://myshell-public-repo-host.s3.amazonaws.com/openvoice/checkpoints_v2_0417.zip)
+
+**3. convert some voice to your voice**
 ```
 ./voice_clone -s raw_voice.wav -t your_voice.wav
 ```
@@ -66,9 +70,9 @@ voice_clone -s test1.mp4:test2.wav -t zh:my_voice.wav -S -n result1.wav:result2.
 ```
 output 5 files:
 ```
-test1.tone           # test1.mp4 tone color
-test2.tone           # test2.wav tone color
-my_voice.tone        # my_voice.wav tone color
+test1.tone           # test1.mp4 tone color, next time use test1.mp4, will skip extract tone color from test1.mp4, use test1.tone directly
+test2.tone           # test2.wav tone color, next time use test2.wav, will skip extract tone color from test2.wav, use test2.tone directly
+my_voice.tone        # my_voice.wav tone color, next time use my_voice.wav, will skip extract tone color from my_voice.wav, use my_voice.tone directly
 ./result/result1.wav # test1.mp4 --> zh
 ./result/result2.wav # test2.wav --> my_voice.wav
 ```
