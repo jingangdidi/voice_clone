@@ -77,6 +77,15 @@ my_voice.tone        # my_voice.wav tone color, next time use my_voice.wav, will
 ./result/result2.wav # test2.wav --> my_voice.wav
 ```
 
+## ⚡️ Performance
+CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090
+| CPU/GPU | thread | elapsed time |
+| ------- | ------ | ------------ |
+| CPU     | 4      | 89.91s       |
+| CPU     | 10     | 63.86s       |
+| CPU     | 20     | 49.31s       |
+| GPU     |        | 1.14s        |
+
 ## 🛠 Building from source
 - **default use cpu and simple vad (not require onnx)**
 ```
@@ -99,16 +108,6 @@ cargo build --release
 - candle-nn = { git = "https://github.com/jingangdidi/candle", package = "candle-nn", branch = "main" }
 + candle-nn = { git = "https://github.com/jingangdidi/candle", package = "candle-nn", branch = "main", features = ["cuda"] }
 ```
-
-## ⚡️ Performance
-CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090
-| CPU/GPU | thread | elapsed time |
-| ------- | ------ | ------------ |
-| CPU     | 4      | 89.91s       |
-| CPU     | 10     | 63.86s       |
-| CPU     | 20     | 49.31s       |
-| GPU     |        | 1.14s        |
-
 
 ## 🚥 Arguments
 ```
