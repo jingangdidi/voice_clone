@@ -11,7 +11,7 @@
 - ​💪​ 单个可执行文件，无需安装
 - 🎈 不依赖FFmpeg、Python、PyTorch、ONNX
 - 🎨​ 支持多种格式，mp4、mp3、wav等
-- 🎤 内置多种音色：en-au、en-br、en-default、en-india、en-newest、en-us、es、fr、jp、kr、zh
+- 👄 内置多种音色：en-au、en-br、en-default、en-india、en-newest、en-us、es、fr、jp、kr、zh
 - 💻​ 支持CPU和GPU
 
 ## 🚀 简单使用
@@ -76,6 +76,15 @@ my_voice.tone        # my_voice.wav的音色数据，下次使用my_voice.wav时
 ./result/result1.wav # test1.mp4 --> zh，指定了输出路径和文件名
 ./result/result2.wav # test2.wav --> my_voice.wav，指定了输出路径和文件名
 ```
+
+## ⚡️ 性能
+CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090
+| CPU/GPU | thread | elapsed time |
+| ------- | ------ | ------------ |
+| CPU     | 4      | 89.91s       |
+| CPU     | 10     | 63.86s       |
+| CPU     | 20     | 49.31s       |
+| GPU     |        | 1.14s        |
 
 ## 🛠 从源码编译
 - **默认使用CPU和不依赖onnx的vad**
