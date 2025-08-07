@@ -3,9 +3,9 @@
 
 [中文文档](https://github.com/jingangdidi/voice_clone/blob/main/README_zh.md)
 
-**An [OpenVoice](https://github.com/myshell-ai/OpenVoice)-based voice cloning tool, single executable file, supporting multiple formats without dependencies on ffmpeg, Python, PyTorch, ONNX.**
+**An [OpenVoice](https://github.com/myshell-ai/OpenVoice)-based voice cloning tool, single executable file (~14M), supporting multiple formats without dependencies on ffmpeg, Python, PyTorch, ONNX.**
 
-**基于[OpenVoice](https://github.com/myshell-ai/OpenVoice)的声音克隆工具，免安装的单个可执行文件，支持多种格式，不依赖ffmpeg、python、pytorch、onnx**
+**基于[OpenVoice](https://github.com/myshell-ai/OpenVoice)的声音克隆工具，免安装的单个可执行文件（~14M），支持多种格式，不依赖ffmpeg、python、pytorch、onnx**
 
 ## 👑 Features
 - ​💪​ Single-file executable - no installation required
