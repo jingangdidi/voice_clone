@@ -79,7 +79,7 @@ my_voice.tone        # my_voice.wav的音色数据，下次使用my_voice.wav时
 
 ## ⚡️ 性能
 CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090
-| CPU/GPU | thread | elapsed time | command                            |
+| CPU/GPU | 线程数 | 耗时         | 命令                               |
 | ------- | ------ | ------------ | ---------------------------------- |
 | CPU     | 4      | 89.91s       | voice_clone -s test/test.wav -T 4  |
 | CPU     | 10     | 63.86s       | voice_clone -s test/test.wav -T 10 |
