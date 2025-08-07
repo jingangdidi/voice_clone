@@ -84,6 +84,7 @@ CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090
 | CPU     | 4      | 89.91s       | voice_clone -s test/test.wav -T 4  |
 | CPU     | 10     | 63.86s       | voice_clone -s test/test.wav -T 10 |
 | CPU     | 20     | 49.31s       | voice_clone -s test/test.wav -T 20 |
+| CPU     | 30     | s            | voice_clone -s test/test.wav -T 30 |
 | GPU     |        | 1.14s        | voice_clone -s test/test.wav       |
 
 ## 🛠 Building from source
