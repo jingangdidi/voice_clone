@@ -79,12 +79,12 @@ my_voice.tone        # my_voice.wav tone color, next time use my_voice.wav, will
 
 ## ⚡️ Performance
 CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090
-| CPU/GPU | thread | elapsed time |
-| ------- | ------ | ------------ |
-| CPU     | 4      | 89.91s       |
-| CPU     | 10     | 63.86s       |
-| CPU     | 20     | 49.31s       |
-| GPU     |        | 1.14s        |
+| CPU/GPU | thread | elapsed time | command                            |
+| ------- | ------ | ------------ | ---------------------------------- |
+| CPU     | 4      | 89.91s       | voice_clone -s test/test.wav -T 4  |
+| CPU     | 10     | 63.86s       | voice_clone -s test/test.wav -T 10 |
+| CPU     | 20     | 49.31s       | voice_clone -s test/test.wav -T 20 |
+| GPU     |        | 1.14s        | voice_clone -s test/test.wav       |
 
 ## 🛠 Building from source
 - **default use cpu and simple vad (not require onnx)**
