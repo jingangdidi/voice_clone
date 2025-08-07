@@ -78,14 +78,14 @@ my_voice.tone        # my_voice.wav tone color, next time use my_voice.wav, will
 ```
 
 ## ⚡️ Performance
-CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090
+os: ubuntu 22.04, CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090, cuda: 12.2
 | CPU/GPU | thread | elapsed time | command                            |
 | ------- | ------ | ------------ | ---------------------------------- |
-| CPU     | 4      | 89.91s       | voice_clone -s test/test.wav -T 4  |
-| CPU     | 10     | 63.86s       | voice_clone -s test/test.wav -T 10 |
-| CPU     | 20     | 49.31s       | voice_clone -s test/test.wav -T 20 |
-| CPU     | 30     | s            | voice_clone -s test/test.wav -T 30 |
-| GPU     |        | 1.14s        | voice_clone -s test/test.wav       |
+| CPU     | 4      | ~40s         | voice_clone -s test/test.wav -T 1  |
+| CPU     | 10     | ~16s         | voice_clone -s test/test.wav -T 4  |
+| CPU     | 20     | ~15s         | voice_clone -s test/test.wav -T 10 |
+| CPU     | 30     | ~14s         | voice_clone -s test/test.wav -T 0  |
+| GPU     |        | ~1.6s        | voice_clone -s test/test.wav       |
 
 ## 🛠 Building from source
 - **default use cpu and simple vad (not require onnx)**
@@ -122,7 +122,7 @@ Options:
   -n, --name        result voice file names, colon separated, default: source--target.wav
   -m, --model       openvoice model path, default: ./checkpoints_v2/converter
   -S, --save        save source and target tone color to to the same directory as the specified -s and -t files, maintaining identical nomenclature while altering the format extension to ".tone"
-  -T, --thread      cpu threads, default: 4
+  -T, --thread      cpu threads, 0 means all threads, default: 4
   -o, --outpath     output path, default: ./
   -h, --help        display usage information
 ```
