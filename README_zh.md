@@ -3,9 +3,9 @@
 
 [English readme](https://github.com/jingangdidi/voice_clone/blob/main/README.md)
 
-**An [OpenVoice](https://github.com/myshell-ai/OpenVoice)-based voice cloning tool, single executable file, supporting multiple formats without dependencies on ffmpeg, Python, PyTorch, ONNX.**
+**An [OpenVoice](https://github.com/myshell-ai/OpenVoice)-based voice cloning tool, single executable file (~14M), supporting multiple formats without dependencies on ffmpeg, Python, PyTorch, ONNX.**
 
-**基于[OpenVoice](https://github.com/myshell-ai/OpenVoice)的声音克隆工具，免安装的单个可执行文件，支持多种格式，不依赖ffmpeg、python、pytorch、onnx**
+**基于[OpenVoice](https://github.com/myshell-ai/OpenVoice)的声音克隆工具，免安装的单个可执行文件（~14M），支持多种格式，不依赖ffmpeg、python、pytorch、onnx**
 
 ## 👑 特点
 - ​💪​ 单个可执行文件，无需安装
@@ -78,14 +78,14 @@ my_voice.tone        # my_voice.wav的音色数据，下次使用my_voice.wav时
 ```
 
 ## ⚡️ 性能
-CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090
-| CPU/GPU | 线程数 | 耗时         | 命令                               |
+系统: ubuntu 22.04, CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090, cuda: 12.2
+| CPU/GPU | 线程数  | 耗时          | 命令                               |
 | ------- | ------ | ------------ | ---------------------------------- |
-| CPU     | 4      | 89.91s       | voice_clone -s test/test.wav -T 4  |
-| CPU     | 10     | 63.86s       | voice_clone -s test/test.wav -T 10 |
-| CPU     | 20     | 49.31s       | voice_clone -s test/test.wav -T 20 |
-| CPU     | 30     |              | voice_clone -s test/test.wav -T 30 |
-| GPU     |        | 1.14s        | voice_clone -s test/test.wav       |
+| CPU     | 4      | ~40s         | voice_clone -s test/test.wav -T 1  |
+| CPU     | 10     | ~16s         | voice_clone -s test/test.wav -T 4  |
+| CPU     | 20     | ~15s         | voice_clone -s test/test.wav -T 10 |
+| CPU     | all    | ~14s         | voice_clone -s test/test.wav -T 0  |
+| GPU     |        | ~1.6s        | voice_clone -s test/test.wav       |
 
 ## 🛠 从源码编译
 - **默认使用CPU和不依赖onnx的vad**
@@ -122,7 +122,7 @@ Options:
   -n, --name        result voice file names, colon separated, default: source--target.wav
   -m, --model       openvoice model path, default: ./checkpoints_v2/converter
   -S, --save        save source and target tone color to to the same directory as the specified -s and -t files, maintaining identical nomenclature while altering the format extension to ".tone"
-  -T, --thread      cpu threads, default: 4
+  -T, --thread      cpu threads, 0 means all threads, default: 4
   -o, --outpath     output path, default: ./
   -h, --help        display usage information
 ```
