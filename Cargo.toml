@@ -1,0 +1,53 @@
+[package]
+name = "voice_clone"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+opt-level = 3
+panic = "abort"
+strip = true
+
+[dependencies]
+anyhow = { version = "1.0" }
+argh = { version = "0.1.10" }
+
+candle-core = { git = "https://github.com/jingangdidi/candle", package = "candle-core", branch = "main" } # cpu
+#candle-core = { git = "https://github.com/jingangdidi/candle", package = "candle-core", branch = "main", features = ["cuda"] } # cuda
+
+candle-nn = { git = "https://github.com/jingangdidi/candle", package = "candle-nn", branch = "main" } # cpu
+#candle-nn = { git = "https://github.com/jingangdidi/candle", package = "candle-nn", branch = "main", features = ["cuda"] } # cuda
+
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0" }
+thiserror = { version = "1.0" }
+
+hound = { version = "3" }
+#symphonia = { version = "0.5.4", features = ["all-codecs", "all-formats"] }
+symphonia = { version = "0.5.4", features = ["isomp4", "mp3", "aac"] } # https://docs.rs/symphonia/latest/src/symphonia/lib.rs.html#165
+
+num-complex = { version = "0.4.6" }
+rustfft = { version = "6.4.0" }
+
+memmap2 = { version = "0.9.3", features = ["stable_deref_trait"] }
+safetensors = { version = "0.4.1" }
+
+rayon = { version = "1.7.0" }
+
+[dependencies.ndarray]
+version = "0.15"
+optional = true
+
+[dependencies.ort]
+version = "=2.0.0-rc.2"
+features = ["ndarray"]
+optional = true
+
+[dependencies.ort-sys]
+version = "=2.0.0-rc.2"
+optional = true
+
+[features]
+default = ["simple_vad"] # default not use onnx
+simple_vad = [] # simple vad, not use onnx
+silero_vad = ["dep:ndarray", "dep:ort", "dep:ort-sys"] # silero vad, need onnx
