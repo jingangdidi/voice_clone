@@ -136,4 +136,4 @@ Options:
 - [audio resample](https://github.com/bmcfee/resampy)
 
 ## ⏰ changelog
-- [2025.08.06] release v0.1.0
+- [2025.08.08] release v0.1.0
