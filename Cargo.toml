@@ -12,6 +12,7 @@ strip = true
 anyhow = { version = "1.0" }
 argh = { version = "0.1.10" }
 
+# https://github.com/huggingface/candle/issues/2990
 candle-core = { git = "https://github.com/jingangdidi/candle", package = "candle-core", branch = "main" } # cpu
 #candle-core = { git = "https://github.com/jingangdidi/candle", package = "candle-core", branch = "main", features = ["cuda"] } # cuda
 
