@@ -79,13 +79,13 @@ my_voice.tone        # my_voice.wav的音色数据，下次使用my_voice.wav时
 
 ## ⚡️ 性能
 系统: ubuntu 22.04, CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090, cuda: 12.2
-| CPU/GPU | 线程数  | 耗时          | 命令                               |
-| ------- | ------ | ------------ | ---------------------------------- |
-| CPU     | 1      | ~40s         | voice_clone -s test/test.wav -T 1  |
-| CPU     | 10     | ~16s         | voice_clone -s test/test.wav -T 4  |
-| CPU     | 20     | ~15s         | voice_clone -s test/test.wav -T 10 |
-| CPU     | all    | ~14s         | voice_clone -s test/test.wav -T 0  |
-| GPU     |        | ~1.6s        | voice_clone -s test/test.wav       |
+| CPU/GPU | 线程数 | 耗时         | 命令                                    |
+| ------- | ------ | ------------ | --------------------------------------- |
+| CPU     | 1      | ~40s         | voice_clone -s test_data/test.wav -T 1  |
+| CPU     | 10     | ~16s         | voice_clone -s test_data/test.wav -T 4  |
+| CPU     | 20     | ~15s         | voice_clone -s test_data/test.wav -T 10 |
+| CPU     | all    | ~14s         | voice_clone -s test_data/test.wav -T 0  |
+| GPU     |        | ~1.6s        | voice_clone -s test_data/test.wav       |
 
 ## 🛠 从源码编译
 - **默认使用CPU和不依赖onnx的vad**
@@ -136,4 +136,4 @@ Options:
 - [audio resample](https://github.com/bmcfee/resampy)
 
 ## ⏰ 更新记录
-- [2025.08.06] release v0.1.0
+- [2025.08.08] release v0.1.0
