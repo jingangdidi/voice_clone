@@ -79,13 +79,13 @@ my_voice.tone        # my_voice.wav tone color, next time use my_voice.wav, will
 
 ## ⚡️ Performance
 os: ubuntu 22.04, CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090, cuda: 12.2
-| CPU/GPU | thread | elapsed time | command                            |
-| ------- | ------ | ------------ | ---------------------------------- |
-| CPU     | 1      | ~40s         | voice_clone -s test/test.wav -T 1  |
-| CPU     | 10     | ~16s         | voice_clone -s test/test.wav -T 4  |
-| CPU     | 20     | ~15s         | voice_clone -s test/test.wav -T 10 |
-| CPU     | all    | ~14s         | voice_clone -s test/test.wav -T 0  |
-| GPU     |        | ~1.6s        | voice_clone -s test/test.wav       |
+| CPU/GPU | thread | elapsed time | command                                 |
+| ------- | ------ | ------------ | --------------------------------------- |
+| CPU     | 1      | ~40s         | voice_clone -s test_data/test.wav -T 1  |
+| CPU     | 10     | ~16s         | voice_clone -s test_data/test.wav -T 4  |
+| CPU     | 20     | ~15s         | voice_clone -s test_data/test.wav -T 10 |
+| CPU     | all    | ~14s         | voice_clone -s test_data/test.wav -T 0  |
+| GPU     |        | ~1.6s        | voice_clone -s test_data/test.wav       |
 
 ## 🛠 Building from source
 - **default use cpu and simple vad (not require onnx)**
