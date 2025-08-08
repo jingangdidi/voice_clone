@@ -82,8 +82,8 @@ my_voice.tone        # my_voice.wav的音色数据，下次使用my_voice.wav时
 | CPU/GPU | 线程数 | 耗时         | 命令                                    |
 | ------- | ------ | ------------ | --------------------------------------- |
 | CPU     | 1      | ~40s         | voice_clone -s test_data/test.wav -T 1  |
-| CPU     | 10     | ~16s         | voice_clone -s test_data/test.wav -T 4  |
-| CPU     | 20     | ~15s         | voice_clone -s test_data/test.wav -T 10 |
+| CPU     | 10     | ~16s         | voice_clone -s test_data/test.wav -T 10 |
+| CPU     | 20     | ~15s         | voice_clone -s test_data/test.wav -T 20 |
 | CPU     | all    | ~14s         | voice_clone -s test_data/test.wav -T 0  |
 | GPU     |        | ~1.6s        | voice_clone -s test_data/test.wav       |
 
@@ -112,7 +112,7 @@ cargo build --release
 
 ## 🚥 命令行参数
 ```
-Usage: voice_clone.exe -s <source> [-t <target>] [-n <name>] [-m <model>] [-S] [-T <thread>] [-o <outpath>]
+Usage: voice_clone -s <source> [-t <target>] [-n <name>] [-m <model>] [-S] [-T <thread>] [-o <outpath>]
 
 voice clone
 
