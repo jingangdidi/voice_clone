@@ -82,8 +82,8 @@ os: ubuntu 22.04, CPU: i7-13700K, GPU: NVIDIA GeForce RTX 4090, cuda: 12.2
 | CPU/GPU | thread | elapsed time | command                                 |
 | ------- | ------ | ------------ | --------------------------------------- |
 | CPU     | 1      | ~40s         | voice_clone -s test_data/test.wav -T 1  |
-| CPU     | 10     | ~16s         | voice_clone -s test_data/test.wav -T 4  |
-| CPU     | 20     | ~15s         | voice_clone -s test_data/test.wav -T 10 |
+| CPU     | 10     | ~16s         | voice_clone -s test_data/test.wav -T 10 |
+| CPU     | 20     | ~15s         | voice_clone -s test_data/test.wav -T 20 |
 | CPU     | all    | ~14s         | voice_clone -s test_data/test.wav -T 0  |
 | GPU     |        | ~1.6s        | voice_clone -s test_data/test.wav       |
 
@@ -112,7 +112,7 @@ cargo build --release
 
 ## 🚥 Arguments
 ```
-Usage: voice_clone.exe -s <source> [-t <target>] [-n <name>] [-m <model>] [-S] [-T <thread>] [-o <outpath>]
+Usage: voice_clone -s <source> [-t <target>] [-n <name>] [-m <model>] [-S] [-T <thread>] [-o <outpath>]
 
 voice clone
 
