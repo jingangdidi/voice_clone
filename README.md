@@ -136,4 +136,8 @@ Options:
 - [audio resample](https://github.com/bmcfee/resampy)
 
 ## ⏰ changelog
+- [2025.08.25] release v0.1.1
+  - 🛠Fix: Replace the fixed value 44100 in the code with the actual sample rate of the source and target voice.
+  - ⭐️Add: Support print source and target tone cosine similarity.
+  - 💪🏻Optimize: Support voice less than 10 seconds.
 - [2025.08.08] release v0.1.0
