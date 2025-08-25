@@ -86,6 +86,9 @@ pub fn convert_voice(voices: Vec<Voice>, config: &Path, ckpt: &Path, save: bool)
         let source_se = tone_colors.get(&v.src_path).unwrap();
         let target_se = tone_colors.get(&v.tgt_path).unwrap();
 
+        // source and target tone cosine similarity
+        let similarity = cosine_similarity(source_se, target_se)?;
+
         // 生成语音
         tone_color_converter.convert(
             &v.source, // audio_src_path
@@ -96,7 +99,7 @@ pub fn convert_voice(voices: Vec<Voice>, config: &Path, ckpt: &Path, save: bool)
         )?;
         // 打印耗时
         let t2 = SystemTime::now();
-        println!("convert tone color: {} --> {} ({})", v.src_name, v.tgt_name, elapsed_time(t1, t2));
+        println!("convert tone color: {} --> {} (elapsed time: {}, cosine similarity: {})", v.src_name, v.tgt_name, elapsed_time(t1, t2), similarity);
     }
     Ok(())
 }
@@ -113,6 +116,25 @@ pub fn elapsed_time(start: SystemTime, end: SystemTime) -> String {
     } else {
         format!("{:.2}ns", nano as f32)
     }
+}
+
+/// Computes the cosine similarity between two tone Tensor
+/// https://en.wikipedia.org/wiki/Cosine_similarity
+/// https://github.com/gaspiman/cosine_similarity/blob/master/cosine.go
+fn cosine_similarity(a: &Tensor, b: &Tensor) -> Result<f32, MyError> {
+    let vec_a = a.squeeze(0)?.squeeze(1)?.to_vec1::<f32>()?;
+    let vec_b = b.squeeze(0)?.squeeze(1)?.to_vec1::<f32>()?;
+
+    let mut ab: f32 = 0.0;
+    let mut sum_a: f32 = 0.0;
+    let mut sum_b: f32 = 0.0;
+    for (i, j) in vec_a.iter().zip(vec_b.iter()) {
+        ab += i * j;
+        sum_a += i.powf(2.0);
+        sum_b += j.powf(2.0);
+    }
+
+    Ok(ab / (sum_a.sqrt() * sum_b.sqrt()))
 }
 
 /// 1. 读取音频文件，重采样
@@ -179,9 +201,11 @@ pub fn extract_audio_data(file: &Path) -> Result<Vec<Vec<f32>>, MyError> {
     let segments: Vec<(usize, usize)> = split_audio_data_vad(audio_data_f32_norm, 16000, false)?;
 
     // 3. 对f32的音频数据进行拆分
-    let audio_data_f32 = load_audio(file, None)?.samples; // 这是f32的音频数据
+    let audio_data = load_audio(file, None)?;
+    let audio_data_f32 = audio_data.samples; // 这是f32的音频数据
+    let sample_rate: u32 = audio_data.sample_rate;
 
-    let ratio = 44100.0 / 16000.0;
+    let ratio = sample_rate as f32 / 16000.0;
     let mut final_audio_data: Vec<Vec<f32>> = vec![];
     let mut final_audio_data_merged: Vec<f32> = vec![];
     for i in segments {
@@ -191,7 +215,11 @@ pub fn extract_audio_data(file: &Path) -> Result<Vec<Vec<f32>>, MyError> {
         final_audio_data.push(tmp_data);
     }
     let total_length = final_audio_data_merged.len();
-    let num_splits = (total_length as f32 / 10.0 / 44100.0).round() as usize; // 默认按照10秒拆分
+    let num_splits = if total_length > (sample_rate as usize * 10) {
+        (total_length as f32 / 10.0 / sample_rate as f32).round() as usize
+    } else {
+        1
+    }; // 默认按照10秒拆分
     let interval = total_length / num_splits; // 每段多长
 
     let mut final_audio_data: Vec<Vec<f32>> = vec![];
@@ -203,8 +231,8 @@ pub fn extract_audio_data(file: &Path) -> Result<Vec<Vec<f32>>, MyError> {
             end = total_length;
         }
         let y = &final_audio_data_merged[start..end];
-        let n_samples = (y.len() as f32 * 22050.0 / 44100.0).ceil() as usize;
-        let mut after_resample = resample(y, 44100, 22050, true);
+        let n_samples = (y.len() as f32 * 22050.0 / sample_rate as f32).ceil() as usize;
+        let mut after_resample = resample(y, sample_rate, 22050, true);
         if after_resample.len() > n_samples { // 截取前n_samples个
             after_resample.truncate(n_samples);
         } else { // 在最后补0
