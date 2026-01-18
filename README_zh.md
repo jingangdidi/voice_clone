@@ -136,8 +136,11 @@ Options:
 - [audio resample](https://github.com/bmcfee/resampy)
 
 ## ⏰ 更新记录
-- [2025.08.25] release v0.1.1
+- [2026.01.18] release [v0.1.2](https://github.com/jingangdidi/voice_clone/releases/tag/v0.1.2)
+  - 🛠修复: 音频文件数据类型S24和U24解析错误。
+  - 🛠修复: 指定`-S`时没有保存`-t`音频文件的`.tone`文件。
+- [2025.08.25] release [v0.1.1](https://github.com/jingangdidi/voice_clone/releases/tag/v0.1.1)
   - 🛠修复: 代码中固定的采样率44100替换为声音的实际采样率。
   - ⭐️增加: 支持打印source和target音色的cosine相似度。
   - 💪🏻优化: 支持声音长度小于10秒。
-- [2025.08.08] release v0.1.0
+- [2025.08.08] release [v0.1.0](https://github.com/jingangdidi/voice_clone/releases/tag/v0.1.0)

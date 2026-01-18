@@ -136,8 +136,11 @@ Options:
 - [audio resample](https://github.com/bmcfee/resampy)
 
 ## ⏰ changelog
-- [2025.08.25] release v0.1.1
+- [2026.01.18] release [v0.1.2](https://github.com/jingangdidi/voice_clone/releases/tag/v0.1.2)
+  - 🛠Fix: Audio file data types S24 and U24 parsing error.
+  - 🛠Fix: When specifying `-S`, the `.tone` file corresponding to the `-t` audio file was not saved.
+- [2025.08.25] release [v0.1.1](https://github.com/jingangdidi/voice_clone/releases/tag/v0.1.1)
   - 🛠Fix: Replace the fixed value 44100 in the code with the actual sample rate of the source and target voice.
   - ⭐️Add: Support print source and target tone cosine similarity.
   - 💪🏻Optimize: Support voice less than 10 seconds.
-- [2025.08.08] release v0.1.0
+- [2025.08.08] release [v0.1.0](https://github.com/jingangdidi/voice_clone/releases/tag/v0.1.0)
