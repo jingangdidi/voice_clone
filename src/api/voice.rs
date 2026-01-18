@@ -68,13 +68,13 @@ pub fn convert_voice(voices: Vec<Voice>, config: &Path, ckpt: &Path, save: bool)
         if !tone_colors.contains_key(&v.tgt_path) {
             let target_se = match v.tone_t {
                 Some(tone) => if tone.exists() && tone.is_file() { // 直接读取target已经提取的音色文件
-                    let target_se = load_tone_color_from_file(&tone, &device)?;
+                    load_tone_color_from_file(&tone, &device)?
+                } else {
+                    let target_se = v.target.get_target_tensor(&tone_color_converter, &device)?;
                     if save {
                         target_se.save_safetensors("tone", &tone)?;
                     }
                     target_se
-                } else {
-                    v.target.get_target_tensor(&tone_color_converter, &device)?
                 },
                 None => v.target.get_target_tensor(&tone_color_converter, &device)?,
             };

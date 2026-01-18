@@ -165,17 +165,17 @@ impl Audio {
                         }
                     }
                 },
-                AudioBufferRef::U24(buf) => { // u24类型不能直接转f32，U24内部是u32，先获取内部的u32值，值范围[0, 2^32-1]，即[0, 4294967295]，转为f32类型，值范围标准化到[-1, 1]
+                AudioBufferRef::U24(buf) => { // u24类型不能直接转f32，U24内部是u32，先获取内部的u32值，值范围[0, 16777215]，转为f32类型，值范围标准化到[-1, 1]
                     if channels == 2 {
                         let ch0 = buf.chan(0);
                         let ch1 = buf.chan(1);
                         for i in 0..ch0.len() {
                             let avg = (ch0[i].inner() as f32 + ch1[i].inner() as f32) / 2.0;
-                            audio_samples.push((avg - 2147483648.0) / 2147483648.0);
+                            audio_samples.push((avg - 8388608.0) / 8388608.0);
                         }
                     } else {
                         for &sample in buf.chan(0) {
-                            audio_samples.push((sample.inner() as f32 - 2147483648.0) / 2147483648.0); // 不能直接转f32，U24内部是u32，先通过`.inner()`方法获取内部u32，再转为f32
+                            audio_samples.push((sample.inner() as f32 - 8388608.0) / 8388608.0); // 不能直接转f32，U24内部是u32，先通过`.inner()`方法获取内部u32，再转为f32
                         }
                     }
                 },
@@ -221,17 +221,17 @@ impl Audio {
                         }
                     }
                 },
-                AudioBufferRef::S24(buf) => { // i24类型不能直接转f32，i24内部是i32，先获取内部的i32值，值范围[-(2^31), 2^31-1]，即[-2147483648, 2147483647]，转为f32类型，值范围标准化到[-1, 1]
+                AudioBufferRef::S24(buf) => { // i24类型不能直接转f32，i24内部是i32，先获取内部的i32值，值范围[-8388608, 8388607]，转为f32类型，值范围标准化到[-1, 1]
                     if channels == 2 {
                         let ch0 = buf.chan(0);
                         let ch1 = buf.chan(1);
                         for i in 0..ch0.len() {
                             let avg = (ch0[i].inner() as f32 + ch1[i].inner() as f32) / 2.0;
-                            audio_samples.push(avg / 2147483648.0);
+                            audio_samples.push(avg / 8388608.0);
                         }
                     } else {
                         for &sample in buf.chan(0) {
-                            audio_samples.push(sample.inner() as f32 / 2147483648.0); // 不能直接转f32，i24内部是i32，先通过`.inner()`方法获取内部i32，再转为f32
+                            audio_samples.push(sample.inner() as f32 / 8388608.0); // 不能直接转f32，i24内部是i32，先通过`.inner()`方法获取内部i32，再转为f32
                         }
                     }
                 },
